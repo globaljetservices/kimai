@@ -1,0 +1,12 @@
+#comment-icon {
+    position:absolute;
+    right:102px;
+    top:60px;
+    background: url("grfx/blase.gif") no-repeat 0 0;
+    overflow:hidden;
+    width:12px;
+    height:13px;
+    display:block;
+    z-index:70;
+    cursor:pointer;
+}
