@@ -25,7 +25,7 @@ require('../../core/Config.php');
 
 switch ($axAction) {
 
-    case "add_edit_timeSheetEntry":  
+    case "add_edit_timeSheetEntry":
         if (isset($kga['customer'])) die();
     // ==============================================
     // = display edit dialog for timesheet record   =
@@ -211,6 +211,26 @@ switch ($axAction) {
 
     echo $view->render("floaters/add_edit_timeSheetEntry.php"); 
 
-    break;        
+    break;
 
+    case "add_timeSheetCommentEntry":
+        if (isset($kga['customer'])) die();
+
+        $selected = explode('|',$axValue);
+
+        if ($id) {
+            $timeSheetEntry = $database->timeSheet_get_data($id);
+            $view->id = $id;
+            $view->location = $timeSheetEntry['location'];
+            $view->trackingNumber = $timeSheetEntry['trackingNumber'];
+            $view->description = $timeSheetEntry['description'];
+            $view->comment = $timeSheetEntry['comment'];
+            $view->userID = $timeSheetEntry['userID'];
+        }
+
+        $view->commentTypes = $commentTypes;
+
+        echo $view->render("floaters/add_timeSheetCommentEntry.php");
+
+        break;
 }
