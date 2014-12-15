@@ -340,10 +340,8 @@ function startRecord(projectID,activityID,userID) {
     startsec = now;
     show_stopwatch();
 
-    // GJS add
     $("#customers table,#projects table,#activities table,#users table").css("opacity", 0.5);
     $(".option a").css("cursor", "default");
-    // end GJS add
 
     value = projectID +"|"+ activityID;
     $.post("processor.php", { axAction: "startRecord", axValue: value, id: userID, startTime: now},
@@ -366,10 +364,8 @@ function stopRecord() {
     $("#timeSheetTable>table>tbody>tr:first-child>td").css( "background-color", "#F00" );
     $("#timeSheetTable>table>tbody>tr:first-child>td").css( "color", "#FFF" );
 
-    // GJS add
     $("#customers table,#projects table,#activities table,#users table").css("opacity", 1.0);
     $(".option a").css("cursor", "pointer");
-    // end GJS add
 
     show_selectors();
     $.post("processor.php", { axAction: "stopRecord", axValue: 0, id: currentRecording},
@@ -400,7 +396,7 @@ function show_stopwatch() {
     $("#selector").css('display','none');
     $("#stopwatch").css('display','block');
     $("#stopwatch_ticker").css('display','block');
-    $("#comment-icon").css('display','block');       // GJS add  end
+    $("#comment-icon").css('display','block');
     $("#buzzer").addClass("act");
     $("#ticker_customer").html($("#selected_customer").html());
     $("#ticker_project").html($("#selected_project").html());
@@ -414,7 +410,7 @@ function show_selectors() {
     $("#selector").css('display','block');
     $("#stopwatch").css('display','none');
     $("#stopwatch_ticker").css('display','none');
-    $("#comment-icon").css('display','none');       // GJS add  end
+    $("#comment-icon").css('display','none');
     $("#buzzer").removeClass("act");
     if (!(selected_customer && selected_project && selected_activity)) {
       $('#buzzer').addClass('disabled');
@@ -436,11 +432,11 @@ function buzzer() {
 }
 
 function buzzer_preselect_project(projectID,projectName,customerID,customerName,updateRecording) {
-    var opacityLevel = $("#projects table").css("opacity");   // GJS add
+    var opacityLevel = $("#projects table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
   selected_customer = customerID;
   selected_project = projectID;
   $.post("processor.php", { axAction: "saveBuzzerPreselection", project:projectID});
@@ -454,11 +450,11 @@ function buzzer_preselect_project(projectID,projectName,customerID,customerName,
 }
 
 function buzzer_preselect_activity(activityID,activityName,updateRecording) {
-    var opacityLevel = $("#activities table").css("opacity");   // GJS add
+    var opacityLevel = $("#activities table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
     selected_activity = activityID;
     $.post("processor.php", { axAction: "saveBuzzerPreselection", activity:activityID});
     $("#selected_activity").html(activityName);
@@ -544,11 +540,11 @@ function ticktack_off() {
 // shows dialogue for editing an item in either customer, project or activity list
 //
 function editSubject(subject,id) {
-    var opacityLevel = $("#activities table").css("opacity");   // GJS add
+    var opacityLevel = $("#activities table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
     var width = 450;
     if (subject == 'project') {
       width = 650;
@@ -780,11 +776,11 @@ function lists_set_TableWidths() {
 // reloads timesheet, customer, project and activity tables
 //
 function lists_reload(subject, callback) {
-    var opacityLevel = $("#activities table").css("opacity");   // GJS add
+    var opacityLevel = $("#activities table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
     switch (subject) {
         case "user":
             $.post("processor.php", { axAction: "reload_users", axValue: 0, id: 0 },
@@ -862,11 +858,11 @@ function lists_live_filter(div_list, needle) {
 }
 
 function lists_customer_highlight(customer) {
-    var opacityLevel = $("#customers table").css("opacity");   // GJS add
+    var opacityLevel = $("#customers table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
   $(".customer").removeClass("filterProjectForPreselection");
   $(".project").removeClass("filterProjectForPreselection");
   $("#projects .customer"+customer).addClass("filterProjectForPreselection");
@@ -891,11 +887,11 @@ function lists_customer_prefilter(customer, filter, singleFilter) {
 //  table row changes color on rollover - preselection link on whole row
 //
 function lists_change_color(tableRow,highLight) {
-    var opacityLevel = $("#activities table").css("opacity");   // GJS add
+    var opacityLevel = $("#activities table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
   if (highLight) {
     $(tableRow).parents("tr").addClass("highlightProjectForPreselection");
   } else {
@@ -1016,11 +1012,11 @@ function lists_toggle_filter(subject,id) {
 }
 
 function lists_update_filter(subject,id) {
-    var opacityLevel = $("#activities table").css("opacity");   // GJS add
+    var opacityLevel = $("#activities table").css("opacity");
     if (opacityLevel < 1) {
         return;
     }
-    // end GJS add
+    
     lists_toggle_filter(subject,id);
     // let tab update its data
     hook_filter();
