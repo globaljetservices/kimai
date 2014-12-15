@@ -363,6 +363,15 @@ function editRecord(id) {
 }
 
 // ----------------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------------------
+// edit current record comment
+//
+function editRecordComment(id) {
+    floaterShow(ts_ext_path + "floaters.php","add_timeSheetCommentEntry",0,id,650);
+}
+// ----------------------------------------------------------------------------------------
+
 // refresh the rate with a new value, if this is a new entry
 //
 function getBestRates() {
