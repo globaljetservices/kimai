@@ -171,6 +171,12 @@
         <?php if ($this->showInstallWarning): ?>
         floaterShow("floaters.php","securityWarning","installer",0,450);
         <?php endif; ?>
+
+            var commentState = $("#comment-icon").css('display');
+            if (commentState === 'block') {
+                $("#customers table,#projects table,#activities table,#users table").css("opacity", 0.5);
+                $(".option a").css("cursor", "default");
+            }
     }
 
     </script>
@@ -262,7 +268,11 @@
         <div id="stopwatch_ticker">
             <ul id="ticker"><li id="ticker_customer">&nbsp;</li><li id="ticker_project">&nbsp;</li><li id="ticker_activity">&nbsp;</li></ul>
         </div>
-        
+
+        <div id="comment-icon" onclick="editRecordComment(currentRecording);"
+            <div>&nbsp;</div>
+        </div>
+
         <div id="buzzer" class="disabled">
             <div>&nbsp;</div>
         </div>
